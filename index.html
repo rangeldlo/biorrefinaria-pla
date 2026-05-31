@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ácido Lático & PLA — Biorrefinaria</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #F7F4EF;
+    --dark: #1C1C1A;
+    --green: #2D6A4F;
+    --green-light: #74C69D;
+    --green-pale: #D8F3DC;
+    --amber: #B5700A;
+    --amber-pale: #FFF3CD;
+    --gray: #6B6B67;
+    --border: #E0DDD7;
+    --font-display: 'DM Serif Display', Georgia, serif;
+    --font-body: 'DM Sans', system-ui, sans-serif;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--cream);
+    color: var(--dark);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.7;
+  }
+
+  /* NAV */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(247,244,239,0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 56px;
+  }
+  .nav-logo { font-family: var(--font-display); font-size: 1.1rem; color: var(--green); }
+  .nav-links { display: flex; gap: 0; }
+  .nav-links a {
+    font-size: 12px; font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase;
+    color: var(--gray); text-decoration: none; padding: 6px 12px;
+    border-radius: 4px; transition: color 0.2s, background 0.2s;
+  }
+  .nav-links a:hover { color: var(--green); background: var(--green-pale); }
+
+  /* HERO */
+  .hero {
+    min-height: 88vh;
+    display: grid; grid-template-columns: 1fr 1fr; align-items: center;
+    padding: 5rem 4rem;
+    gap: 4rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .hero-text { }
+  .hero-tag {
+    display: inline-block;
+    font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--green); background: var(--green-pale);
+    padding: 4px 12px; border-radius: 20px; margin-bottom: 1.5rem;
+  }
+  .hero h1 {
+    font-family: var(--font-display);
+    font-size: clamp(2.8rem, 5vw, 4.2rem);
+    line-height: 1.1;
+    color: var(--dark);
+    margin-bottom: 1.2rem;
+  }
+  .hero h1 em { color: var(--green); font-style: italic; }
+  .hero-desc { font-size: 1.05rem; color: var(--gray); max-width: 480px; margin-bottom: 2rem; }
+  .hero-cta {
+    display: inline-block;
+    background: var(--green); color: #fff;
+    padding: 12px 28px; border-radius: 6px;
+    font-size: 14px; font-weight: 500; text-decoration: none;
+    transition: background 0.2s;
+  }
+  .hero-cta:hover { background: #1f4f3a; }
+
+  .hero-visual {
+    display: flex; flex-direction: column; gap: 12px;
+  }
+  .mol-card {
+    background: #fff; border: 1px solid var(--border); border-radius: 12px;
+    padding: 1.5rem; display: flex; align-items: center; gap: 1.2rem;
+  }
+  .mol-formula {
+    font-family: var(--font-display); font-size: 1.8rem;
+    color: var(--green); white-space: nowrap;
+  }
+  .mol-info { font-size: 13px; color: var(--gray); }
+  .mol-info strong { display: block; font-size: 14px; color: var(--dark); font-weight: 500; margin-bottom: 2px; }
+
+  .kpi-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+  .kpi-box {
+    background: #fff; border: 1px solid var(--border); border-radius: 10px;
+    padding: 1rem; text-align: center;
+  }
+  .kpi-box .num { font-family: var(--font-display); font-size: 1.6rem; color: var(--green); }
+  .kpi-box .lbl { font-size: 11px; color: var(--gray); margin-top: 2px; }
+
+  /* SECTIONS */
+  .section {
+    padding: 5rem 4rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .section:nth-child(even) { background: #fff; }
+  .section-tag {
+    font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--green); margin-bottom: 0.5rem;
+  }
+  .section-num {
+    font-size: 11px; color: var(--border); font-weight: 500;
+    letter-spacing: 0.06em; display: block; margin-bottom: 0.3rem;
+  }
+  h2 {
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 3vw, 2.6rem);
+    line-height: 1.2; color: var(--dark); margin-bottom: 1rem;
+  }
+  h3 { font-size: 1.05rem; font-weight: 500; color: var(--dark); margin-bottom: 0.4rem; }
+  p { color: var(--gray); margin-bottom: 1rem; }
+  p:last-child { margin-bottom: 0; }
+
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
+  .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.5rem; }
+
+  .info-card {
+    background: var(--cream); border: 1px solid var(--border); border-radius: 10px;
+    padding: 1.4rem;
+  }
+  .info-card.green { background: var(--green-pale); border-color: var(--green-light); }
+  .info-card.amber { background: var(--amber-pale); border-color: #f0c060; }
+  .info-card h3 { color: var(--dark); }
+
+  /* PIRÂMIDE */
+  .pyramid-wrap { display: flex; flex-direction: column; align-items: center; gap: 6px; margin: 2rem 0; }
+  .pyramid-level {
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 6px; font-size: 13px; font-weight: 500; color: #fff;
+    transition: transform 0.2s;
+  }
+  .pyramid-level:hover { transform: scaleX(1.02); }
+  .pyramid-level.active { outline: 3px solid var(--green); outline-offset: 2px; }
+
+  /* COMPARATIVO */
+  .compare-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  .compare-table th {
+    text-align: left; padding: 10px 14px;
+    font-size: 11px; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase;
+    color: var(--gray); border-bottom: 2px solid var(--border);
+  }
+  .compare-table td { padding: 12px 14px; border-bottom: 1px solid var(--border); color: var(--gray); vertical-align: top; }
+  .compare-table td:first-child { color: var(--dark); font-weight: 500; }
+  .compare-table tr:last-child td { border-bottom: none; }
+  .tag-bio { background: var(--green-pale); color: var(--green); font-size: 11px; padding: 2px 8px; border-radius: 20px; font-weight: 500; }
+  .tag-petro { background: #f0f0f0; color: #555; font-size: 11px; padding: 2px 8px; border-radius: 20px; font-weight: 500; }
+
+  /* PROCESSO */
+  .steps { display: flex; flex-direction: column; gap: 0; }
+  .step {
+    display: grid; grid-template-columns: 48px 1fr;
+    gap: 1rem; padding: 1.4rem 0;
+    border-bottom: 1px solid var(--border);
+    align-items: start;
+  }
+  .step:last-child { border-bottom: none; }
+  .step-num {
+    width: 40px; height: 40px;
+    background: var(--green); color: #fff;
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-display); font-size: 1rem; flex-shrink: 0;
+  }
+  .step-body h3 { margin-bottom: 0.3rem; }
+
+  /* REAÇÕES */
+  .reaction-box {
+    background: var(--dark); color: #f0ece4;
+    border-radius: 10px; padding: 1.4rem 1.8rem;
+    font-family: monospace; font-size: 14px; line-height: 2;
+    margin: 1rem 0; overflow-x: auto;
+  }
+  .reaction-box .eq-label { font-family: var(--font-body); font-size: 11px; color: var(--green-light); letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 4px; display: block; }
+  .reaction-box .eq { color: #fff; }
+  .reaction-box .eq .reactant { color: #74C69D; }
+  .reaction-box .eq .product { color: #F4C775; }
+  .reaction-box .eq .arrow { color: var(--gray); }
+
+  /* QUÍMICA VERDE */
+  .principles-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 1rem; }
+  .principle {
+    display: flex; gap: 10px; align-items: flex-start;
+    padding: 12px; background: var(--green-pale);
+    border-radius: 8px; border: 1px solid var(--green-light);
+  }
+  .principle-num { font-family: var(--font-display); font-size: 1.4rem; color: var(--green); flex-shrink: 0; width: 28px; }
+  .principle-text { font-size: 13px; color: var(--dark); }
+  .principle-text strong { display: block; font-weight: 500; margin-bottom: 2px; }
+
+  /* MERCADO */
+  .company-list { display: flex; flex-direction: column; gap: 10px; }
+  .company-row {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 12px 16px; background: #fff; border: 1px solid var(--border); border-radius: 8px;
+  }
+  .company-name { font-weight: 500; font-size: 14px; }
+  .company-detail { font-size: 13px; color: var(--gray); }
+  .trl-bar-wrap { margin-top: 1.5rem; }
+  .trl-bar-label { font-size: 13px; color: var(--gray); margin-bottom: 6px; display: flex; justify-content: space-between; }
+  .trl-track { background: var(--border); border-radius: 4px; height: 8px; overflow: hidden; }
+  .trl-fill { height: 100%; border-radius: 4px; background: var(--green); }
+
+  /* FOOTER */
+  footer {
+    padding: 3rem 4rem;
+    border-top: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  footer .f-left { font-family: var(--font-display); font-size: 1.1rem; color: var(--green); }
+  footer .f-right { font-size: 13px; color: var(--gray); }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .animate { animation: fadeUp 0.5s ease both; }
+
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; padding: 3rem 1.5rem; min-height: auto; }
+    .section { padding: 3rem 1.5rem; }
+    .two-col, .three-col, .kpi-row { grid-template-columns: 1fr; }
+    nav { padding: 0 1rem; }
+    .nav-links { display: none; }
+    footer { flex-direction: column; gap: 1rem; padding: 2rem 1.5rem; text-align: center; }
+    .principles-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-logo">Biorrefinaria · PLA</span>
+  <div class="nav-links">
+    <a href="#biomassa">Biomassa</a>
+    <a href="#piramide">Pirâmide</a>
+    <a href="#economia">Economia Circular</a>
+    <a href="#comparativo">Petróleo vs Bio</a>
+    <a href="#quimica">Química</a>
+    <a href="#verde">Q. Verde</a>
+    <a href="#mercado">Mercado</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-text animate">
+    <span class="hero-tag">Projeto 2 — Biorrefinarias · PUC-Campinas</span>
+    <h1>Do resíduo ao <em>plástico do futuro</em></h1>
+    <p class="hero-desc">Como a cana-de-açúcar se transforma em ácido lático e, depois, em PLA — o biopolímero que está substituindo o plástico convencional em embalagens, medicina e têxteis.</p>
+    <a href="#biomassa" class="hero-cta">Explorar o projeto</a>
+  </div>
+  <div class="hero-visual animate" style="animation-delay:0.15s">
+    <div class="mol-card">
+      <div class="mol-formula">C₃H₆O₃</div>
+      <div class="mol-info">
+        <strong>Ácido lático</strong>
+        Produto intermediário — obtido por fermentação da glicose da cana
+      </div>
+    </div>
+    <div class="mol-card">
+      <div class="mol-formula">(C₃H₄O₂)ₙ</div>
+      <div class="mol-info">
+        <strong>PLA — Poli(ácido lático)</strong>
+        Biopolímero final — biodegradável, compostável, drop-in
+      </div>
+    </div>
+    <div class="kpi-row">
+      <div class="kpi-box"><div class="num">756M t</div><div class="lbl">Cana produzida/ano no Brasil</div></div>
+      <div class="kpi-box"><div class="num">TRL 9</div><div class="lbl">Maturidade tecnológica do PLA</div></div>
+      <div class="kpi-box"><div class="num">−60%</div><div class="lbl">Emissões vs plástico fóssil</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- TÓPICO 1 — BIOMASSA -->
+<section class="section" id="biomassa">
+  <span class="section-num">Tópico 01</span>
+  <div class="section-tag">Biomassa de origem</div>
+  <div class="two-col">
+    <div>
+      <h2>A cana-de-açúcar como ponto de partida</h2>
+      <p>O ácido lático pode ser obtido a partir de diversas biomassas ricas em carboidratos fermentescíveis. No Brasil, a principal fonte é a <strong>cana-de-açúcar</strong> (<em>Saccharum officinarum</em>), sendo o caldo e o melaço as frações diretamente aproveitadas. O bagaço, resíduo do processo sucroalcooleiro, também é explorado como biomassa lignocelulósica de segunda geração.</p>
+      <p>Além da cana, milho, mandioca e resíduos agroindustriais (soro de leite, palha de arroz) são biomassas alternativas em escala global.</p>
+    </div>
+    <div>
+      <div class="three-col" style="gap:10px">
+        <div class="info-card">
+          <h3>Composição química</h3>
+          <p style="font-size:13px">Sacarose: 12–18%<br>Celulose (bagaço): 40–45%<br>Hemicelulose: 25–30%<br>Lignina: 18–22%</p>
+        </div>
+        <div class="info-card">
+          <h3>Disponibilidade</h3>
+          <p style="font-size:13px">Brasil produz ~756 Mt/ano. São Paulo concentra 55% da produção. Safra: abril–novembro (sazonalidade moderada).</p>
+        </div>
+        <div class="info-card green">
+          <h3>Escala industrial</h3>
+          <p style="font-size:13px">Viável. Usinas já possuem infraestrutura de moagem e fermentação. A integração com a cadeia sucroalcooleira reduz custos logísticos.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TÓPICO 2 — PIRÂMIDE -->
+<section class="section" id="piramide">
+  <span class="section-num">Tópico 02</span>
+  <div class="section-tag">Pirâmide da biorrefinaria</div>
+  <div class="two-col">
+    <div>
+      <h2>Posição na pirâmide</h2>
+      <p>O ácido lático ocupa o nível de <strong>químico de plataforma</strong> na pirâmide da biorrefinaria — um composto intermediário de alto valor que serve de base para múltiplos produtos finais. Já o PLA, obtido a partir dele, sobe para o nível de <strong>material de alto valor agregado</strong>.</p>
+      <p>O mesmo processo ainda gera CO₂ (usado em bebidas e na indústria) e biomassa microbiana (potencial fertilizante), demonstrando a integração típica de uma biorrefinaria.</p>
+      <div class="info-card amber" style="margin-top:1rem">
+        <h3>Coprodutos relevantes</h3>
+        <p style="font-size:13px">CO₂ da fermentação · Vinhaça · Bagaço como fonte de energia · Biomassa de Lactobacillus (fertilizante)</p>
+      </div>
+    </div>
+    <div>
+      <div class="pyramid-wrap">
+        <div class="pyramid-level" style="width:60%; background:#2D6A4F; height:48px">Energia / Biogás</div>
+        <div class="pyramid-level" style="width:70%; background:#40916C; height:48px">Biocombustíveis</div>
+        <div class="pyramid-level active" style="width:80%; background:#52B788; height:52px; color:#1a3d2b">Químico de plataforma ← Ácido lático</div>
+        <div class="pyramid-level active" style="width:90%; background:#74C69D; height:52px; color:#1a3d2b">Material alto valor ← PLA</div>
+        <div class="pyramid-level" style="width:100%; background:#B7E4C7; height:48px; color:#1a3d2b">Químicos de especialidade</div>
+      </div>
+      <p style="font-size:12px; color:var(--gray); text-align:center; margin-top:8px">Níveis destacados: posição do ácido lático e do PLA na pirâmide</p>
+    </div>
+  </div>
+</section>
+
+<!-- TÓPICO 3 — ECONOMIA CIRCULAR -->
+<section class="section" id="economia">
+  <span class="section-num">Tópico 03</span>
+  <div class="section-tag">Economia circular</div>
+  <div class="two-col">
+    <div>
+      <h2>Fechando o ciclo de materiais</h2>
+      <p>O PLA incorpora os princípios da economia circular de forma estrutural: parte de resíduo agroindustrial (bagaço e melaço), produz um material biodegradável e compostável, e pode retornar ao ciclo como CO₂ e água ao fim da vida útil — sem acumulação no ambiente.</p>
+      <p>Substitui diretamente o PET e o PP em embalagens, dois dos plásticos fósseis de maior volume e impacto ambiental. O ganho em carbono é real: 1 kg de PLA bio-based emite cerca de 1,8 kg CO₂eq, enquanto 1 kg de PET convencional emite 3,4 kg CO₂eq.</p>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <h3>Cana / resíduo agroindustrial</h3>
+          <p style="font-size:13px">Biomassa renovável de colheita anual. Bagaço e melaço são resíduos do processo de açúcar e etanol.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <h3>Fermentação → Ácido lático</h3>
+          <p style="font-size:13px">Bactérias Lactobacillus convertem açúcares em ácido lático com alta seletividade.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <h3>Polimerização → PLA</h3>
+          <p style="font-size:13px">Ácido lático é polimerizado via abertura de anel do lactídeo para formar o biopolímero PLA.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <h3>Uso e fim de vida</h3>
+          <p style="font-size:13px">PLA é compostável industrialmente. Em 3–6 meses hidrolisa a ácido lático e CO₂ — retornando ao ciclo.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="three-col" style="margin-top:2.5rem">
+    <div class="info-card green">
+      <h3>ODS 12 — Consumo responsável</h3>
+      <p style="font-size:13px">Substitui plástico fóssil em embalagens e descartáveis, reduzindo resíduos não degradáveis.</p>
+    </div>
+    <div class="info-card green">
+      <h3>ODS 13 — Ação climática</h3>
+      <p style="font-size:13px">Redução de 40–60% nas emissões de GEE em relação ao PET ao longo do ciclo de vida.</p>
+    </div>
+    <div class="info-card green">
+      <h3>ODS 9 — Indústria e inovação</h3>
+      <p style="font-size:13px">Integração com cadeia sucroalcooleira existente no Brasil cria valor industrial sem nova infraestrutura.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TÓPICO 4 — PETRÓLEO VS BIOMASSA -->
+<section class="section" id="comparativo">
+  <span class="section-num">Tópico 04</span>
+  <div class="section-tag">Via petróleo versus via biomassa</div>
+  <h2>Duas rotas, um mesmo produto</h2>
+  <p style="max-width:680px; margin-bottom:2rem">O ácido lático petroquímico é produzido por hidrólise do lactonitrila, derivado do acetaldeído (petroquímico). A rota biotecnológica usa a fermentação de açúcares por bactérias lácticas. O PLA bio-based é um produto <strong>drop-in</strong>: quimicamente idêntico ao seu equivalente sintético, podendo substituí-lo diretamente.</p>
+
+  <table class="compare-table">
+    <thead>
+      <tr>
+        <th>Critério</th>
+        <th><span class="tag-petro">Via petróleo</span></th>
+        <th><span class="tag-bio">Via biomassa (bio-based)</span></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Matéria-prima</td>
+        <td>Acetaldeído (derivado do etileno, do petróleo)</td>
+        <td>Glicose / sacarose (cana, milho, mandioca)</td>
+      </tr>
+      <tr>
+        <td>Rota de síntese</td>
+        <td>Hidrólise ácida do lactonitrila; condições severas (T e P elevados)</td>
+        <td>Fermentação por Lactobacillus sp.; condições brandas (37°C, pH 6)</td>
+      </tr>
+      <tr>
+        <td>Emissões de CO₂</td>
+        <td>~3,4 kg CO₂eq / kg PET equivalente</td>
+        <td>~1,8 kg CO₂eq / kg PLA (carbono biogênico)</td>
+      </tr>
+      <tr>
+        <td>Consumo de energia</td>
+        <td>Alto — síntese química a altas temperaturas</td>
+        <td>Moderado — fermentação requer controle térmico e purificação</td>
+      </tr>
+      <tr>
+        <td>Biodegradabilidade</td>
+        <td>Não biodegradável (permanece séculos no ambiente)</td>
+        <td>Compostável industrialmente em 3–6 meses</td>
+      </tr>
+      <tr>
+        <td>Pureza estereoquímica</td>
+        <td>Mistura racêmica (L e D)</td>
+        <td>Predominantemente L-(+)-ácido lático — maior controle estereoquímico</td>
+      </tr>
+      <tr>
+        <td>Produto final (drop-in?)</td>
+        <td>Ácido lático sintético / PET</td>
+        <td>Ácido lático bio-based / PLA — drop-in em muitas aplicações</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- TÓPICO 5 — QUÍMICA -->
+<section class="section" id="quimica">
+  <span class="section-num">Tópico 05</span>
+  <div class="section-tag">Química envolvida na formulação</div>
+  <div class="two-col">
+    <div>
+      <h2>Da glicose ao biopolímero</h2>
+      <p>O processo envolve três grandes etapas: pré-tratamento da biomassa, fermentação láctica e polimerização do ácido lático para formação do PLA.</p>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-body">
+            <h3>Pré-tratamento e hidrólise</h3>
+            <p style="font-size:13px">Bagaço ou caldo de cana passa por hidrólise ácida ou enzimática (celulase, hemicelulase) para liberar monossacarídeos fermentescíveis (glicose, xilose).</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-body">
+            <h3>Fermentação homoláctica</h3>
+            <p style="font-size:13px">Lactobacillus delbrueckii ou L. rhamnosus converte glicose em L-(+)-ácido lático via glicólise (via Embden-Meyerhof). Condições: 37–45°C, pH 5,5–6,5, anaerobiose. Rendimento: ~90–95% do teórico.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-body">
+            <h3>Purificação</h3>
+            <p style="font-size:13px">O caldo fermentado é acidificado com H₂SO₄, filtrado, e o ácido lático é purificado por extração com solvente, destilação ou resinas de troca iônica.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <div class="step-body">
+            <h3>Formação do lactídeo e polimerização</h3>
+            <p style="font-size:13px">O ácido lático é oligomerizado e então ciclizado ao dímero cíclico lactídeo. A abertura de anel do lactídeo com catalisador de octanoato de estanho(II) produz o PLA de alto peso molecular.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="reaction-box">
+        <span class="eq-label">Fermentação homoláctica (glicólise)</span>
+        <div class="eq"><span class="reactant">C₆H₁₂O₆</span> <span class="arrow">──[Lactobacillus sp.]──→</span> <span class="product">2 CH₃CH(OH)COOH</span></div>
+        <div class="eq" style="font-size:12px; color:var(--gray)">  Glicose → 2 ácido lático + 2 ATP</div>
+      </div>
+      <div class="reaction-box" style="margin-top:10px">
+        <span class="eq-label">Condensação e ciclização ao lactídeo</span>
+        <div class="eq"><span class="reactant">2 CH₃CH(OH)COOH</span> <span class="arrow">──→</span> <span class="product">C₆H₈O₄</span> + 2H₂O</div>
+        <div class="eq" style="font-size:12px; color:var(--gray)">  2 ácido lático → lactídeo (dímero cíclico)</div>
+      </div>
+      <div class="reaction-box" style="margin-top:10px">
+        <span class="eq-label">Abertura de anel — ROP (Ring-Opening Polymerization)</span>
+        <div class="eq"><span class="reactant">n C₆H₈O₄</span> <span class="arrow">──[Sn(Oct)₂, 180°C]──→</span> <span class="product">(C₃H₄O₂)₂ₙ</span></div>
+        <div class="eq" style="font-size:12px; color:var(--gray)">  n lactídeo → PLA (Mw > 100.000 g/mol)</div>
+      </div>
+      <div class="info-card" style="margin-top:1rem">
+        <h3>Estrutura do PLA</h3>
+        <p style="font-size:13px">Fórmula molecular: (C₃H₄O₂)ₙ<br>Fórmula estrutural: cadeia poliéster com grupos éster –[O–CH(CH₃)–C(=O)]ₙ–<br>Tm: 170–180°C · Tg: 55–60°C · Mw: 50.000–200.000 g/mol</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TÓPICO 6 — QUÍMICA VERDE -->
+<section class="section" id="verde">
+  <span class="section-num">Tópico 06</span>
+  <div class="section-tag">Química verde e biodegradabilidade</div>
+  <div class="two-col">
+    <div>
+      <h2>Princípios da Química Verde contemplados</h2>
+      <p>O processo de produção do ácido lático e do PLA atende a pelo menos 6 dos 12 princípios da Química Verde, tornando-o um dos processos biotecnológicos mais alinhados à sustentabilidade.</p>
+      <div class="principles-grid">
+        <div class="principle">
+          <div class="principle-num">1</div>
+          <div class="principle-text"><strong>Prevenção de resíduos</strong>Fermentação gera poucos resíduos; subprodutos são reaproveitados.</div>
+        </div>
+        <div class="principle">
+          <div class="principle-num">7</div>
+          <div class="principle-text"><strong>Uso de fontes renováveis</strong>Biomassa da cana substitui insumos fósseis.</div>
+        </div>
+        <div class="principle">
+          <div class="principle-num">9</div>
+          <div class="principle-text"><strong>Catálise</strong>Enzimas e microrganismos como catalisadores biológicos seletivos.</div>
+        </div>
+        <div class="principle">
+          <div class="principle-num">10</div>
+          <div class="principle-text"><strong>Design para degradação</strong>PLA projetado para hidrólise e compostagem ao fim de vida.</div>
+        </div>
+        <div class="principle">
+          <div class="principle-num">6</div>
+          <div class="principle-text"><strong>Economia de energia</strong>Fermentação a 37°C, muito abaixo dos processos petroquímicos.</div>
+        </div>
+        <div class="principle">
+          <div class="principle-num">5</div>
+          <div class="principle-text"><strong>Solventes mais seguros</strong>Fermentação em meio aquoso; purificação com resinas iônicas.</div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <h3 style="margin-bottom:1rem">Biodegradabilidade do PLA</h3>
+      <div class="info-card green" style="margin-bottom:10px">
+        <h3>Compostagem industrial</h3>
+        <p style="font-size:13px">Temperatura > 58°C, umidade controlada. Degradação completa em <strong>3–6 meses</strong>. Mecanismo: hidrólise das ligações éster, seguida de metabolização microbiana a CO₂ e H₂O.</p>
+      </div>
+      <div class="info-card" style="margin-bottom:10px">
+        <h3>Solo e água</h3>
+        <p style="font-size:13px">Degradação mais lenta: 2–5 anos em solo úmido; meses em meio aquoso a pH ácido. Subproduto de degradação é o ácido lático — não tóxico.</p>
+      </div>
+      <div class="info-card amber">
+        <h3>Comparação com PET</h3>
+        <p style="font-size:13px">PET convencional não é biodegradável e persiste no ambiente por <strong>450+ anos</strong>. PLA degrada em fração desse tempo sob condições controladas.</p>
+      </div>
+      <p style="font-size:13px; margin-top:1rem">Toxicidade: ácido lático e seus oligômeros são atóxicos, já presentes naturalmente em alimentos e no metabolismo humano.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TÓPICO 7 — MERCADO -->
+<section class="section" id="mercado">
+  <span class="section-num">Tópico 07</span>
+  <div class="section-tag">Aplicabilidade e viabilidade</div>
+  <div class="two-col">
+    <div>
+      <h2>Mercado e aplicações reais</h2>
+      <p>O PLA tem aplicações em embalagens alimentícias, descartáveis compostáveis, têxteis (PLA-fiber), impressão 3D (filamento FDM), dispositivos médicos (suturas absorvíveis, scaffolds) e cosméticos. O mercado global de PLA foi estimado em US$ 1,5 bilhão em 2023, com crescimento anual de ~15%.</p>
+      <div class="trl-bar-wrap">
+        <div class="trl-bar-label"><span>TRL do PLA (NatureWorks, Corbion)</span><span style="color:var(--green); font-weight:500">TRL 9 — comercial pleno</span></div>
+        <div class="trl-track"><div class="trl-fill" style="width:100%"></div></div>
+      </div>
+      <div class="trl-bar-wrap" style="margin-top:14px">
+        <div class="trl-bar-label"><span>TRL do PLA a partir de bagaço (2ª geração)</span><span style="color:var(--amber); font-weight:500">TRL 6–7 — escala piloto</span></div>
+        <div class="trl-track"><div class="trl-fill" style="width:72%; background:var(--amber)"></div></div>
+      </div>
+      <div class="info-card" style="margin-top:1.5rem">
+        <h3>Cenário no Brasil</h3>
+        <p style="font-size:13px">O Brasil tem posição estratégica única: maior produtor mundial de cana, infraestrutura sucroalcooleira consolidada, e legislação favorável a embalagens biodegradáveis. Braskem, Raízen e startups como a Ruschel Biopolímeros exploram a cadeia.</p>
+      </div>
+    </div>
+    <div>
+      <h3 style="margin-bottom:1rem">Principais produtores mundiais de PLA</h3>
+      <div class="company-list">
+        <div class="company-row">
+          <div><div class="company-name">NatureWorks (EUA / Tailândia)</div><div class="company-detail">Maior produtor mundial — 150.000 t/ano de Ingeo™ PLA a partir de milho</div></div>
+        </div>
+        <div class="company-row">
+          <div><div class="company-name">Corbion (Holanda)</div><div class="company-detail">Ácido lático e PLA via fermentação; foco em embalagens e medicina</div></div>
+        </div>
+        <div class="company-row">
+          <div><div class="company-name">Total Corbion PLA (joint venture)</div><div class="company-detail">Planta na Tailândia — 75.000 t/ano de Luminy® PLA</div></div>
+        </div>
+        <div class="company-row">
+          <div><div class="company-name">Braskem (Brasil)</div><div class="company-detail">P&D em biopolímeros; portfólio de polietileno verde — expansão para PLA em estudo</div></div>
+        </div>
+        <div class="company-row">
+          <div><div class="company-name">Galactic (Bélgica)</div><div class="company-detail">Produção de ácido lático e lactídeo para o mercado europeu</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="f-left">Biorrefinaria · Ácido Lático & PLA</div>
+  <div class="f-right">Projeto 2 — Economia Circular e Biorrefinarias · Prof.ª Thaisa Maia · PUC-Campinas</div>
+</footer>
+
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.style.opacity = '1';
+      e.target.style.transform = 'translateY(0)';
+    }
+  });
+}, { threshold: 0.08 });
+
+document.querySelectorAll('.section').forEach(s => {
+  s.style.opacity = '0';
+  s.style.transform = 'translateY(18px)';
+  s.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+  observer.observe(s);
+});
+</script>
+</body>
+</html>
